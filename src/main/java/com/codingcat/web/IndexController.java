@@ -1,13 +1,12 @@
 package com.codingcat.web;
 
+import com.codingcat.config.auth.LoginUser;
 import com.codingcat.config.auth.dto.SessionUser;
 import com.codingcat.service.posts.PostsService;
 import com.codingcat.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
-import org.h2.engine.Role;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -29,12 +28,17 @@ public class IndexController {
 
     // 전체 조회하기
     @GetMapping("/")
-    public String index(Model model){
+    public String index(
+            Model model,
+            @LoginUser SessionUser user
+    ){
 
         model.addAttribute("posts",postsService.findAllDesc());
 
-        // userName을 Model에 추가
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+        // userName을 Model에 추가(위의 파라미터로 대체 가능)
+        // SessionUser user = (SessionUser) httpSession
+        // .getAttribute("user");
+
         if(user != null){
             model.addAttribute("userName",user.getName());
         }

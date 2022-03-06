@@ -21,3 +21,12 @@ gadle 사용, 버전: 2.1.7.Relese, JUnit4, lombok, jpa                         
 3. p.181(유저 권한을 가진 사람만 허용 할 때)
    // 책 - hasRole(Role.USER.name())
    // 실제 - hasRole(String.valueOf(Role.USER))
+
+-putty 대신에 .XShell로
+https://starrykss.tistory.com/993
+반드시 사용자 이름을 ec2-user로 설정해야함
+
+
+###### 좀 더 공부가 필요한 부분들
+스프링 시큐리티, 테스트 코드 작성
+p.179~
